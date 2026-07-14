@@ -1,0 +1,89 @@
+.line1 {
+    border-top: 1px solid #000;
+    position: relative;
+    /* position: relative;는 위치 속성을 쓸 수 없음  */
+    transform: translateY(25px);
+}
+.width {
+    position: absolute;
+    /* transform: translateX(X, Y); */
+    transform: translate(-50%, 100px);
+    left: 50%; 
+}
+
+.h-ln1,.h-ln2,.h-ln3,.h-ln4 {
+    position: absolute;
+    border-right: 1px solid #000;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.h-ln1 {
+    left: 360px;
+}
+.h-ln2 {
+    left: 760px;
+}
+.h-ln3 {
+    left: 1080px;
+}
+.h-ln4 {
+    left: 1440px;
+}
+
+.h-ln::after {
+    /* 공통 클래스에 적용한 콘텐츠는 삭제 content: ""; > 아래 작성해서 적을 필요 없음 */
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+.h-ln1::after {    content: "360";  }
+.h-ln2::after {    content: "760";  }
+.h-ln3::after {    content: "1080";  }
+.h-ln4::after {    content: "1440";  }
+
+
+
+.box1 {
+    width: 300px; height: 300px ;
+    position: fixed;
+    background-color: #a7a7a7;
+    /*  화면 너비중심 */
+    /* left: 50%; => box가 가지고 있는 300을 기준으로 하는게 아니라 화면 너비를 기준으로 중앙에서 50% 왼쪽을 말함*/
+    left: 50%; 
+    /* 반응형에 따라서 올릴때 움직일 수 있도록 (추가)설정 > 박스호버의 기준(메인) */
+    /* left: 50%; top: 50%;은 화면기준,  transform: translate(-50%, -50%);는 상자 기준으로 변형됨 */
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    /* translate(-50%)는 width: 300px; 기준으로 옮겨짐 */
+    /* transform: translate(-50%); */
+    /* calc()를 사용할 수도 있으나 변형될 때마다 계산해야하는 번거로움을 막기 위해 %사용 */
+}
+.box2 {
+    position: absolute;
+    width: 61px;  height: 20px;
+    background-color: green;
+    top: 26px; left: 1440px; /* 360px + 1px 선값까지 포함 */
+    transform: translate(-50%); /* 계산하지 않아도 자동으로 정렬됨. 홀수가되면 안되고, 0.5px 1px 사용 안함. top: 25px; left: 361px;적용된 상태에서 알아서 적용됨 */
+    
+}
+
+/* <!-- 라인에는 마우스를 올릴 수 없음 .선택자 X BOX에올렸을 때를 설정 --> */
+.box2:hover {
+    transform: translateX(0);
+}
+
+/* 미디어 쿼리는 호버보다 아래 작성하는게 정석 */
+@media screen and (max-width: 1080px) {
+    .box2 {
+        left: 1080px ;
+    }
+}
+/* 고정픽셀을 무조건 확인해야한다. 줄어들지 않는 이유 > 값을 써야함 
+ex. px 들어간 line1부터 확인 > 고정픽셀= 스크롤이 생기는 원인인지? 
+마우스를 올렸을 때 스크롤이 생겨버림 = 고정형에 매우 예민한 것이 반응형/스크롤생김이유 */
+
+ /* 스크롤이 생기면 반응형이라고 볼 수 없음
+고정형에 매우 예민 */
