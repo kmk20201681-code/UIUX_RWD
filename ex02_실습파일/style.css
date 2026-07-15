@@ -1,0 +1,83 @@
+/* body {
+    position: relative;
+} */
+
+.line-main {
+    border-top: 1px solid #000;
+    position: relative;
+    /* position: relative;는 위치 속성을 쓸 수 없음 */
+    transform: translateY(25px);
+}
+
+/* 라인 */
+
+/* 눈금선 */
+.h-ln01, .h-ln02, .h-ln03, .h-ln04 {
+    position: absolute;
+    border-right: 1px solid #000;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.h-ln01 {
+    left: 360px;
+}
+.h-ln02 {
+    left: 760px;
+}
+.h-ln03 {
+    left: 1080px;
+}
+.h-ln04 {
+    left: 1440px;
+}
+.width {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 100px);
+}
+
+
+/* 눈금선 숫자 */
+.h-ln::after {
+    position: absolute;
+    top: 100%;
+    transform: translateX(-50%);
+}
+
+.h-ln01::after { content:  "360"; }
+.h-ln02::after { content:  "760"; }
+.h-ln03::after { content:  "1080"; }
+.h-ln04::after { content:  "1440"; }
+
+
+/* 이동 박스 (초록) */
+
+.box-suv {
+    background-color: green;
+    height: 20px;
+    width: 61px;
+    position: absolute;
+    left: 1440px; top: 26px;
+    transform: translateX(-50%);
+}
+.box-suv:hover {
+    transform: translateX(0);
+}
+
+
+/* 이동 박스 (그레이) */
+
+.box-main {
+    background-color: #a7a7a7;
+    height: 300px;
+    width: 300px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.8s;
+}
+.box-main:hover {
+    transform: translate(-40%, -40%);
+}
