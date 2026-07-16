@@ -1,0 +1,42 @@
+
+/* (실무기준) 360사이즈에서 가장 많이 디자인 함. */
+/* (포트폴리오 기준) 화면이 길어야 예뻐서 320*720 */
+/* 0 ~ 320 */
+@media screen and (max-width: 320px) {
+    header {
+    height: 80px;
+    background-color: #909b92;
+    }
+    footer {
+    height: 210px;
+    background-color: #909b92;
+    }
+
+}
+
+@media screen and (max-width: 1080px) {
+    header {
+    height: 80px;
+    background-color: #7b857d;
+    }
+    .container01 {
+        display: flex;
+        width: 100%;
+        max-width: 1440px;
+    }
+    .s1-cd3-con {
+        flex-wrap: wrap;
+    }
+    .cd3-bx {
+        height: 300px;
+        background-color: #333;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 100%;
+    }
+    footer {
+    height: 210px;
+    background-color: #7b857d;
+    }
+
+}
