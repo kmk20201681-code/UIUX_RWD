@@ -1,3 +1,54 @@
+/* 1080 이하: 가로 3단 레이아웃 → 세로 3단 레이아웃 */
+
+
+
+@media screen and (min-width: 1440px) {
+
+    .s1-cd3-con {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+    /* .cd3-bx {
+        width: 100%;
+        height: 300px;
+        flex-grow: 0;
+        flex-basis: auto;
+    } */
+}
+
+/* [ 1081부터 상자레이아웃 -> 가로 ] 1081 ~ */
+@media screen and (min-width: 1080px) {
+    .s1-cd3-con {
+        /* 조건 | 1080까지 상자 레이아웃 -> 세로값 */
+        flex-direction: row;
+    }
+
+}
+
+/* 320 ~ 1080 */
+@media screen and (max-width: 1080px) {
+    .s1-cd3-con {
+        /* 조건 | 1080까지 상자 레이아웃 -> 세로값 */
+        flex-direction: column;
+    }
+    .cd3-bx {
+        width: 100%; /* : 부모너비를 가져옴 */
+        height: 300px; /* : 고정때문에 작성  */
+        flex-grow: 0; /* : 부모가진것에 비율로써 가져감*/
+        flex-basis: auto; /* : flex-item전용 너비 */
+        /* width랑 flex-basis를 같이 작성했을때의 시너지 ?
+        flex-item은 너비가 유연함(너비오토 = 0). 카드값을 구현할때 flex, grow, basis를 베이스에 적용해두었기 때문
+        flex-grow는 세로에서 동작이됨. row일땐 가로에서 동작, column에선 세로, 세로에선 flex-grow: 1;이 필요없움(제어해야해서-> 0으로 바꿔줌)
+        flex-basis:; 값이 필요없음 ->grow가 0으로 바뀌어서, flex-basis를 기본으로 바꿔준것. 한덩어리로
+        flex-basis 랑 width 둘다 가로너비담당-> 동시들어갈경우 혼동 (그리드에도 사용 x flex-item에서도 사용x)-> 코드의 범용성허용(그리드에도 사용 o flex-item에서도 사용o = width: 100%)을 위해 너비 100% 쓰는 일이 많음 (가로의 기본값을 맞춤)
+        flex-item은 너비가 유연함(너비오토 = 0) -> 반응형일때 100%를 만들어줘야하니 너비 100%로 채워진 것 
+        */
+
+        .cd3-bx { /* 부모의 가로 너비만큼 채움 */ width: 100%; /* 상자의 높이를 300px로 고정함 */ height: 300px; /* 남은 주축 공간을 추가로 가져가지 않음 flex-direction: row일 때 → 남은 가로 공간을 가져가지 않음 flex-direction: column일 때 → 남은 세로 공간을 가져가지 않음 현재 column 상태에서는 상자 높이가 300px보다 추가로 늘어나는 것을 막기 위해 사용함 */ flex-grow: 0; /* flex-item이 늘어나거나 줄어들기 전의 주축 방향 기본 크기를 자동으로 계산함 flex-direction: row일 때 → width 또는 콘텐츠 크기를 참고함 flex-direction: column일 때 → height 또는 콘텐츠 크기를 참고함 현재 column 상태에서는 height: 300px을 기본 세로 크기로 참고함 */ flex-basis: auto; } /* [ width와 flex-basis의 관계 ] width → 항상 요소의 가로 너비를 담당함 → 일반 요소, flex-item, grid-item에 모두 사용할 수 있음 flex-basis → flex-item의 주축 방향 기본 크기를 담당함 → row에서는 가로 크기 → column에서는 세로 크기에 관여함 row 상태에서는 width와 flex-basis가 모두 가로 크기에 관여할 수 있어 역할이 겹칠 수 있음 column 상태에서는 width는 가로 너비, flex-basis는 세로 기본 크기를 담당하므로 같이 사용해도 직접 충돌하지 않음 width: auto는 너비가 0이라는 뜻이 아님 → 부모 공간, 콘텐츠 크기, flex 설정 등을 기준으로 브라우저가 너비를 자동 계산한다는 의미 */
+    }
+}
+
+
 
 /* (실무기준) 360사이즈에서 가장 많이 디자인 함. */
 /* (포트폴리오 기준) 화면이 길어야 예뻐서 320*720 */
@@ -7,35 +58,12 @@
     height: 80px;
     background-color: #909b92;
     }
+    .s1-cd3-con {
+        /* 조건 | 0 ~ 320까지 상자 레이아웃 -> 가로값 */
+        flex-direction: row;
+    }    
     footer {
     height: 210px;
     background-color: #909b92;
     }
-
-}
-
-@media screen and (max-width: 1080px) {
-    header {
-    height: 80px;
-    background-color: #7b857d;
-    }
-    .container01 {
-        width: 100%;
-        max-width: 1440px;
-    }
-    .s1-cd3-con {
-        flex-wrap: wrap;
-    }
-    .cd3-bx {
-        height: 300px;
-        background-color: #333;
-        flex-grow: 1;
-        flex-shrink: 0;
-        flex-basis: 100%;
-    }
-    footer {
-    height: 210px;
-    background-color: #7b857d;
-    }
-
 }

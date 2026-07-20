@@ -5,8 +5,11 @@
 .trs-5{transition: 0.5s;}
 .trs-7{transition: 0.7s;}
 
+
 .container01 {
-    width: 1440px;
+    /* .container01는 최소 320px 최대 1440px 유연한게 동작한다. */
+    min-width: 320px;
+    max-width: 1440px;
     margin: auto; margin-right: auto;
 }
 
@@ -28,11 +31,14 @@ header {
     background-color: #afbdb1;
     padding-top: 100px; 
     padding-bottom: 100px;
+    padding-left: 80px;
+    padding-right: 80px;
 }
 
 .s1-cd3-con {
     display: flex;
     gap: 40px;
+    transition: 0.8s;
 }
 
 .cd3-bx {
