@@ -1,16 +1,51 @@
-
-body {
-  
-  line-height: 1.5;
-  
+/* STEP 01 · 공통 기반 + 상단 안내 바 + 헤더 */
+:root {
+  --blue: #3653f5;
+  --blue-dark: #2441e6;
+  --ink: #171717;
+  --muted: #6f7178;
+  --line: #e3e4e8;
+  --soft-blue: #eef5ff;
+  --soft-gray: #f7f7f7;
+  --container: 80rem;
+  --radius-sm: .625rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
 }
 
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #fff;
+  font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ol { margin-block-start: 0; }
 
 button,
 input,
 select,
 textarea { font: inherit; }
 
+button,
+a { -webkit-tap-highlight-color: transparent; }
+
+a { color: inherit; text-decoration: none; }
+
+button { color: inherit; }
 
 :focus-visible {
   outline: .1875rem solid #ffb800;
@@ -53,7 +88,7 @@ textarea { font: inherit; }
 .notice-bar {
   min-height: 2.375rem;
   color: #fff;
-  background: var(--main);
+  background: var(--blue);
   font-size: .75rem;
 }
 
@@ -85,7 +120,7 @@ textarea { font: inherit; }
 }
 
 .brand {
-  color: var(--main);
+  color: var(--blue);
   font-size: clamp(2rem, 7vw, 2.55rem);
   font-weight: 900;
   letter-spacing: -.07em;
@@ -155,8 +190,8 @@ textarea { font: inherit; }
   justify-content: center;
   padding: .6rem .95rem;
   color: #fff;
-  background: var(--main);
-  border: 1px solid var(--main);
+  background: var(--blue);
+  border: 1px solid var(--blue);
   border-radius: .5rem;
   font-size: .86rem;
   font-weight: 800;
@@ -187,7 +222,7 @@ textarea { font: inherit; }
     font-size: 1rem;
     font-weight: 750;
   }
-  .desktop-nav a.is-active { color: var(--main); }
+  .desktop-nav a.is-active { color: var(--blue); }
   .desktop-nav a.is-active::after {
     position: absolute;
     right: 0;
@@ -195,7 +230,7 @@ textarea { font: inherit; }
     left: 0;
     height: .1875rem;
     content: "";
-    background: var(--main);
+    background: var(--blue);
   }
   .new-badge {
     margin-right: .35rem;
