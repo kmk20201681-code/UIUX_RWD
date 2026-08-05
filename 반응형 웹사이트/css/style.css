@@ -1,0 +1,10 @@
+body { height: 30px; }
+
+.notice-bar {
+    border: 1px solid red;
+    background-color: var(--main);
+    height: 4vh;  min-height: 3vh;   /* 반응형 일때 단위  -> 유연한 화면 대응 (최소값 추가)*/
+    display: flex; justify-content: center; align-items: center;
+    gap: 8px;
+    /* -> 변수로 등록하면 좋을 값 gap: 8px; */
+}
