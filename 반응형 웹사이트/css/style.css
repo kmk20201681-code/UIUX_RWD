@@ -8,3 +8,4 @@ body { height: 30px; }
     gap: 8px;
     /* -> 변수로 등록하면 좋을 값 gap: 8px; */
 }
+

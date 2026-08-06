@@ -83,8 +83,16 @@
   /* padding */
   /* 가장 작은 버튼에 들어갈 패딩값 */
   --padding-XS: var(--num10) var(--num16);
+
+  /* 아이콘 */
+  --icon-FS-XS: var( --font-text-size20);
+  --icon-W-XS: var(--font-weight300);
+  --icon-FS-Small: var(--font-text-size24);
+  --icon-W-Small: var(--font-weight400);
 }
 
+
+/* 전체 브라우저에 들어가는 XS글자 */
 /*  컴포넌트 scss의 양분 
 -> 적용할 html의 속성의 class에 작성
 -> 두께, 사이즈 중복 사용시 띄워서 사용 예시 ) class="notice-bar XS-text-cpn col-de-light"  */
@@ -96,12 +104,6 @@
 }
 .col-de-dark {
   color: var(--color-default-dark);
-}
-
-/* 전체 브라우저에 들어가는 XS글자 */
-.XS-text-cpn {
-  font-size: var(--text-XS);
-  font-weight: var(--textW-Small); 
 }
 
 
@@ -137,3 +139,45 @@
 }
 
 /* ---- 지역 버튼 ---- */
+
+
+/* ------- 아이콘 ------- */
+/* ---- 전역 ---- */
+
+.icon-FS-XS {
+  font-size: var(--icon-FS-XS);
+  font-weight: var(--icon-W-XS);
+}
+
+.icon-FS-Small {
+  font-size: var(--icon-FS-Small);
+  font-weight: var(--icon-W-Small);
+}
+
+
+/* ---- 지역 ---- */
+
+
+.XS-text-cpn {
+  font-size: var(--text-XS);
+  font-weight: var(--textW-Small); 
+}
+
+
+
+
+/* ------- 이벤트 (활성화/비활성화) ------- */
+/* ---- header ---- */
+
+.li {
+  position: relative;  
+  padding: 20px 0; display: inline-flex; /* 임의 코드, 확인용 */
+}
+.li::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--main);
+}
