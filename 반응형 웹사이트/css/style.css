@@ -1,7 +1,7 @@
 body { height: 30px; }
 
 .notice-bar {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     background-color: var(--main);
     height: 4vh;  min-height: 3vh;   /* 반응형 일때 단위  -> 유연한 화면 대응 (최소값 추가)*/
     display: flex; justify-content: center; align-items: center;
@@ -9,3 +9,72 @@ body { height: 30px; }
     /* -> 변수로 등록하면 좋을 값 gap: 8px; */
 }
 
+header {
+    height: 12vh;
+    border-bottom: 1px solid var(--main);
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-box {
+    /* border: 1px solid red; */
+    align-self: center; /* 중앙정렬 */
+}
+ 
+.user-box {
+    /* border: 1px solid red; */
+    display: flex;
+}
+
+.menu1 {
+    /* border: 1px solid red; */
+}
+
+
+/* 자식 */
+.menu1 ul {
+    /* border: 1px solid red; */
+    display: flex;
+    height: 100%;
+    gap : var(--num40);
+}
+/* 후손 */
+.menu1 li {
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.menu1 li:nth-child(2) {
+    padding-left: var(--num60);
+}
+.menu1 li> .icon-new {
+    /* 오른쪽 양수 */
+    left: calc(50% + 10px);  
+    top: calc(50% - 35px);
+    transform: translate(-50%, -50%);
+}
+.menu1 a {
+    padding-top: var(num8);
+    padding-bottom: var(num8);
+    /* 16 기본 사이즈라 등록 안함 */
+    /* font-size: var(--text-Smal); */
+    font-weight: var(--textW-large);
+}
+
+.user-menu-box {
+    /* border: 1px solid red; */
+    align-self: center;
+    display: flex;
+}
+
+.se-box {
+    display: flex;
+}
+
+.user-ex {
+    display: flex;
+    align-items: center;
+    /* --num은 사용한것 외에는 쓰지 않는 편. = > 사용할 이유가 없어짐  */
+    gap: var(--num8);
+}
