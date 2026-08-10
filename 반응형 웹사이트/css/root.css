@@ -48,9 +48,22 @@
     --color-def : #333;
 
     /* 배수 */
-    --num2: 2px; --num4: 4px; --num6: 6px; --num8: 8px; --num10: 10px; --num12: 12px; --num14: 14px; --num16: 16px; --num18: 18px; --num20: 20px; --num22: 22px; --num24: 24px; --num26: 26px; --num28: 28px; --num30: 30px; --num32: 32px; --num34: 34px; --num36: 36px; --num38: 38px; --num40: 40px; --num42: 42px; --num44: 44px; --num46: 46px; --num48: 48px; --num50: 50px; --num52: 52px; --num54: 54px; --num56: 56px; --num58: 58px; --num60: 60px; --num62: 62px; --num64: 64px; --num66: 66px; --num68: 68px; --num70: 70px; --num72: 72px; --num74: 74px; --num76: 76px; --num78: 78px; --num80: 80px; --num82: 82px; --num84: 84px; --num86: 86px; --num88: 88px; --num90: 90px; --num92: 92px; --num94: 94px; --num96: 96px; --num98: 98px; --num100: 100px; --num102: 102px; --num104: 104px; --num106: 106px; --num108: 108px; --num110: 110px; --num112: 112px; --num114: 114px; --num116: 116px; --num118: 118px; --num120: 120px; --num122: 122px; --num124: 124px; --num126: 126px; --num128: 128px; --num130: 130px; --num132: 132px; --num134: 134px; --num136: 136px; --num138: 138px; --num140: 140px; --num142: 142px; --num144: 144px; --num146: 146px; --num148: 148px; --num150: 150px; --num152: 152px; --num154: 154px; --num156: 156px; --num158: 158px; --num160: 160px; --num162: 162px; --num164: 164px; --num166: 166px; --num168: 168px; --num170: 170px; --num172: 172px; --num174: 174px; --num176: 176px; --num178: 178px; --num180: 180px;
+    --num0: 0; --num2: 2px; --num4: 4px; --num6: 6px; --num8: 8px; --num10: 10px; --num12: 12px; --num14: 14px; --num16: 16px; --num18: 18px; --num20: 20px; --num22: 22px; --num24: 24px; --num26: 26px; --num28: 28px; --num30: 30px; --num32: 32px; --num34: 34px; --num36: 36px; --num38: 38px; --num40: 40px; --num42: 42px; --num44: 44px; --num46: 46px; --num48: 48px; --num50: 50px; --num52: 52px; --num54: 54px; --num56: 56px; --num58: 58px; --num60: 60px; --num62: 62px; --num64: 64px; --num66: 66px; --num68: 68px; --num70: 70px; --num72: 72px; --num74: 74px; --num76: 76px; --num78: 78px; --num80: 80px; --num82: 82px; --num84: 84px; --num86: 86px; --num88: 88px; --num90: 90px; --num92: 92px; --num94: 94px; --num96: 96px; --num98: 98px; --num100: 100px; --num102: 102px; --num104: 104px; --num106: 106px; --num108: 108px; --num110: 110px; --num112: 112px; --num114: 114px; --num116: 116px; --num118: 118px; --num120: 120px; --num122: 122px; --num124: 124px; --num126: 126px; --num128: 128px; --num130: 130px; --num132: 132px; --num134: 134px; --num136: 136px; --num138: 138px; --num140: 140px; --num142: 142px; --num144: 144px; --num146: 146px; --num148: 148px; --num150: 150px; --num152: 152px; --num154: 154px; --num156: 156px; --num158: 158px; --num160: 160px; --num162: 162px; --num164: 164px; --num166: 166px; --num168: 168px; --num170: 170px; --num172: 172px; --num174: 174px; --num176: 176px; --num178: 178px; --num180: 180px;
 
-    
+    /* 그리드 */
+    --auto: auto;
+    --GW-XXS: 320px;
+    --GW-XS: 768px;
+    --GW-S: 900px;     /* --GW-S: 1080px;  1080그리드*/
+    --GW-M: 1100px;    /* --GW-M: 1240px;  1240그리드*/
+    --GW-L: 1620px;
+
+    /* 그리드 MIN 최소 너비  */
+    /* --GWM-XXS: ; */
+    /* --GWM-XS: ; */
+    --GWM-S: 320px;     /* --GW-S: 1080px;  1080그리드*/
+    --GWM-M: ;    /* --GW-M: 1240px;  1240그리드*/
+    /* --GWM-L: ; */
 
 }
 
@@ -99,6 +112,13 @@
   --padding-XSS: var(--num2) var(--num6);
   --padding-XS: var(--num10) var(--num16);
 
+  /* grid-padding */
+  /* --padding-Llargre : var(--num80); 왼쪽 라지 */
+  /* --padding-Rlargre : var(--num80); 오른쪽 라지 */
+  /* -> 값이 두개 들어갈 필요 없음 */
+  --padding-grid-medium : var(--num80);
+  --padding-grid-largre : var(--num140);
+
   /* 아이콘 */
   --icon-FS-XS: var( --font-text-size20);
   --icon-W-XS: var(--font-weight300);
@@ -110,7 +130,28 @@
   --bd-radius2: var(--num2);
   --bd-radius4: var(--num4);
   --bd-radius6: var(--num6);
+
+  /* 그리드 */
+  --G-center: var(--num0) var(--auto); /* 그리드중앙정렬할때만 주사용 */
+  --grid-1080: var(--GW-S);   /* 값을 제한함 = 지정 */
+
+  /* min 최소 범위 그리드 */
+  --gridM-1080: var(--GWM-M);
 }
+
+/* ------ 전역 ------ */
+/* ---- 전역 그리드 ---- */
+.con {
+  margin: var(--G-center);
+  padding-left: var(--padding-grid-largre);
+  padding-right: var(--padding-grid-largre);
+}
+
+
+
+
+/* ------ 지역 ------ */
+/* ---- 지역 그리드 ---- */
 
 
 /* 전체 브라우저에 들어가는 XS글자 */
@@ -186,8 +227,13 @@
   border-radius: var(--bd-radius4);
   position: absolute;
 }
+/* ---- 지역 아이콘 ---- */
+.circle-icon-XS {
+  font-size: var(--icon-FS-small);
+  font-weight: var(--icon-W-XS);
+}
 
-/* ---- 지역 ---- */
+
 
 
 .XS-text-cpn {

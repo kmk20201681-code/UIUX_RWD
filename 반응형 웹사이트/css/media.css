@@ -1,0 +1,49 @@
+
+
+/* 1241 ~ n값 : 헷갈리니까 media위에 작성
+ */
+.user-box-1240 {
+    display: none;
+}
+
+/* 0 ~ 1240 */
+@media screen and (max-width:1240px) {
+    .user-box {
+        display: none;
+    }
+    .user-box-1240 {
+        display: block;
+    }
+}
+
+
+
+/* 변화하는 시점을 건다 */
+/* 0 ~ 1080 */
+/* @media에서는 css변수를 사용할 수없다. 
+아래와 같은 방식으로 코드를 해결해야한다.  */
+/* @media screen and (max-width: var(--grid-1080)) {
+    header {
+        padding-left: var(--padding-grid-medium);
+        padding-right: var(--padding-grid-largre);
+    }
+} */
+
+/* 올바른 방식  */
+/* max-width: 1080px 동작하는범위만 (범위-VAR사용불가), 1080내로사용하겠다.  */
+@media screen and (max-width: 1080px ) {
+    header {
+        /* 최소 범위 따로 등록 및 지정 */
+        min-width: var(--gridM-1080);
+        /* min-width: ; */
+        /* 마지노선 = 수치. 최대 900만 사용할거다. max-width: var(--GW-S); 최대치, 범위가질수 있는크기 */
+        /* 실질 적인 범위, 그리드는 더 작게 설정 */
+        /* 여백값을 통해 사용자에게 이상적인 사이즈이후 > 여유퍄딩 */
+    }
+    header .con {
+        max-width: var(--GW-S);
+        padding-left: var(--padding-grid-medium);
+        padding-right: var(--padding-grid-medium);
+        background-color: antiquewhite;
+    }
+}
