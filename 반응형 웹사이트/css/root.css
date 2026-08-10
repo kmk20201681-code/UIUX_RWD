@@ -229,11 +229,9 @@
 }
 /* ---- 지역 아이콘 ---- */
 .circle-icon-XS {
-  font-size: var(--icon-FS-small);
+  font-size: var(--icon-FS-Small);
   font-weight: var(--icon-W-XS);
 }
-
-
 
 
 .XS-text-cpn {
