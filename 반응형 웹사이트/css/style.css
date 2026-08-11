@@ -59,7 +59,7 @@ header .con {
     padding-top: var(num8);
     padding-bottom: var(num8);
     /* 16 기본 사이즈라 등록 안함 */
-    /* font-size: var(--text-Smal); */
+    /* font-size: var(--text-SMALL); */
     font-weight: var(--textW-large);
 }
 

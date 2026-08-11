@@ -9,7 +9,7 @@
   border-radius: var(--num10);
   color : var(--color-default-light);
   font-size: var(--text-XS);
-  font-weight: var(--textW-medium);
+  font-weight: var(--textW-MEDIUM);
   /* 중첩으로 바꿀 수 있는 구조 : 폰트 사이즈, 두께, 보더 라디우스, 패딩 등  */
 }
 
@@ -18,11 +18,25 @@
   border-radius: var(--num10);
   color : var(--main);
   font-size: var(--text-XS);
-  font-weight: var(--textW-medium);
+  font-weight: var(--textW-MEDIUM);
   border: 1px solid var(--main);
+}
+/* 모바일전용아이콘 메뉴버튼 */
+.mo-menu-btn {
+    font-size: var(--icon-FS-MEDIUM);
+    font-weight: var(--icon-W-MEDIUM);
 }
 
 /* ---- 지역 버튼 ---- */
+
+
+
+
+
+
+
+
+
 
 /* ------- 아이콘 ------- */
 /* ---- 전역 아이콘---- */
@@ -32,9 +46,9 @@
   font-weight: var(--icon-W-XS);
 }
 
-.icon-FS-Small {
-  font-size: var(--icon-FS-Small);
-  font-weight: var(--icon-W-Small);
+.icon-FS-SMALL {
+  font-size: var(--icon-FS-SMALL);
+  font-weight: var(--icon-W-SMALL);
 }
 
 .icon-new {
@@ -48,14 +62,23 @@
   border-radius: var(--bd-radius4);
   position: absolute;
 }
+
+
 /* ---- 지역 아이콘 ---- */
 .circle-icon-XS {
-  font-size: var(--icon-FS-Small);
+  font-size: var(--icon-FS-SMALL);
   font-weight: var(--icon-W-XS);
 }
+/* 메뉴아이콘 */
+.menu-icon {
+    font-size: var(--icon-FS-LARGRE);
+    font-weight: var(--icon-W-LARGRE);
+}
+
+
 
 /* 
 .XS-text-cpn {
   font-size: var(--text-XS);
-  font-weight: var(--textW-Small); 
+  font-weight: var(--textW-SMALL); 
 } */

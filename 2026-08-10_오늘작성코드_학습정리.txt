@@ -72,25 +72,25 @@
 4. 패딩 변수 — root.css
 ============================================================
 
---padding-grid-medium: var(--num80);
---padding-grid-largre: var(--num140);
+--padding-grid-MEDIUM: var(--num80);
+--padding-grid-LARGRE: var(--num140);
 
 [값의 연결 흐름]
 --num80
   → 80px
-  → --padding-grid-medium
+  → --padding-grid-MEDIUM
   → 중간 크기의 좌우 패딩
 
 --num140
   → 140px
-  → --padding-grid-largre
+  → --padding-grid-LARGRE
   → 큰 크기의 좌우 패딩
 
 [설명]
 - 좌우 패딩 값이 같다면 왼쪽·오른쪽 변수를 각각 만들 필요가 없다.
 - 하나의 패딩 변수를 양쪽에 함께 사용할 수 있다.
-- largre는 오타이며 의미상 large가 맞다. 이 문서는 오늘 작성된 코드명을
-  그대로 기록하기 위해 largre로 표기했다.
+- LARGRE는 오타이며 의미상 large가 맞다. 이 문서는 오늘 작성된 코드명을
+  그대로 기록하기 위해 LARGRE로 표기했다.
 
 
 ============================================================
@@ -122,8 +122,8 @@ margin: var(--G-center);
 
 .con {
   margin: var(--G-center);
-  padding-left: var(--padding-grid-largre);
-  padding-right: var(--padding-grid-largre);
+  padding-left: var(--padding-grid-LARGRE);
+  padding-right: var(--padding-grid-LARGRE);
 }
 
 [설명]
@@ -194,7 +194,7 @@ HTML:
 
 CSS:
 .circle-icon-XS {
-  font-size: var(--icon-FS-small);
+  font-size: var(--icon-FS-SMALL);
   font-weight: var(--icon-W-XS);
 }
 
@@ -253,8 +253,8 @@ CSS:
 
   header .con {
     max-width: var(--GW-S);
-    padding-left: var(--padding-grid-medium);
-    padding-right: var(--padding-grid-medium);
+    padding-left: var(--padding-grid-MEDIUM);
+    padding-right: var(--padding-grid-MEDIUM);
     background-color: antiquewhite;
   }
 }
@@ -277,8 +277,8 @@ CSS:
 반면 미디어쿼리 내부의 일반 CSS 선언에서는 변수를 사용할 수 있다.
 
 max-width: var(--GW-S);
-padding-left: var(--padding-grid-medium);
-padding-right: var(--padding-grid-medium);
+padding-left: var(--padding-grid-MEDIUM);
+padding-right: var(--padding-grid-MEDIUM);
 
 [주의]
 - 현재 --gridM-1080이 참조하는 --GWM-M의 값이 비어 있기 때문에
