@@ -217,7 +217,7 @@ CSS:
   }
 
   .user-box-1240 {
-    display: block;
+    display: flex;
   }
 }
 
@@ -228,11 +228,18 @@ CSS:
 
 - 화면이 1240px 이하일 때:
   · 기존 .user-box를 숨긴다.
-  · 대체 요소 .user-box-1240을 표시한다.
+  · 대체 요소 .user-box-1240을 flex 컨테이너로 다시 표시한다.
 
 [핵심]
 - 미디어쿼리는 디자인이 변화하는 시점인 브레이크포인트를 지정한다.
 - max-width: 1240px은 화면 너비가 0~1240px일 때 적용된다는 뜻이다.
+- style.css의 .user-box, .user-box-1240 공통 규칙에는 display: flex가 지정되어 있다.
+- media.css의 display: none은 넓은 화면에서 .user-box-1240을 숨기기 위해
+  기존 display: flex를 덮어쓴 값이다.
+- 1240px 이하에서 display: block을 사용해도 요소는 화면에 나타난다.
+  하지만 block이 기존 flex를 다시 덮어써서 자식 요소의 flex 배치가 해제된다.
+- 따라서 단순히 display: none만 해제한다고 생각하지 말고,
+  원래 필요한 레이아웃 방식인 display: flex로 복원해야 한다.
 
 
 ============================================================
@@ -324,4 +331,3 @@ padding-right: var(--padding-grid-medium);
 6) 값이 비어 있는 CSS 변수를 속성에서 참조하면 어떻게 되는가?
 
 7) header와 header .con을 나누어 스타일링한 이유는 무엇인가?
-

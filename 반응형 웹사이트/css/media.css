@@ -12,7 +12,17 @@
         display: none;
     }
     .user-box-1240 {
-        display: block;
+        /* 반응형 작업 시 자주 실수하는 부분
+        style.css의 공통 규칙
+        .user-box, .user-box-1240 { display: flex; }
+        에서 .user-box-1240을 flex 컨테이너로 설정했다.
+
+        media.css의 기본 display: none을 해제할 때 display: block을 쓰면
+        코드는 정상 실행되지만 기존 display: flex를 block으로 덮어쓰므로,
+        자식 요소를 flex 방식으로 배치할 수 없게 된다.
+        따라서 화면에 다시 표시하면서 기존 flex 배치도 유지하도록
+        display: flex를 작성해야 한다. */
+        display: flex;
     }
 }
 

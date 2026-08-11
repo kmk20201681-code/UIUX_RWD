@@ -21,14 +21,15 @@ header .con {
     align-self: center; /* 중앙정렬 */
 }
  
-.user-box {
-    /* border: 1px solid red; */
+/* 같은 코드를 사용하도록 한다. */
+.user-box, .user-box-1240  {
+    border: 1px solid red;
     display: flex;
 }
-
+/* 
 .menu1 {
-    /* border: 1px solid red; */
-}
+    border: 1px solid red;
+} */
 
 /* 자식 */
 .menu1 ul {
@@ -63,7 +64,7 @@ header .con {
 }
 
 .user-menu-box {
-    /* border: 1px solid red; */
+    border: 1px solid red;
     align-self: center;
     display: flex;
 }

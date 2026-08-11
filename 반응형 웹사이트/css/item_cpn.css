@@ -1,0 +1,28 @@
+/* 아이템 css 버튼 */
+/* 전체 브라우저에 들어가는 XS글자 */
+/*  컴포넌트 scss의 양분 
+-> 적용할 html의 속성의 class에 작성
+-> 두께, 사이즈 중복 사용시 띄워서 사용 예시 ) class="notice-bar XS-text-cpn col-de-light"  */
+
+/* ------ 전역 ------ */
+/* 전역으로 들어감 = 전체 브라우저에 들어가는 기본 글자 색상 */
+.col-de-light {
+  color: var(--color-default-light);
+}
+.col-de-dark {
+  color: var(--color-default-dark);
+}
+
+/* 전체 브라우저에 들어가는 XS글자 */
+.XS-text-cpn {
+  font-size: var(--text-XS);
+  font-weight: var(--textW-small);
+}
+
+/* ------ 지역 ------ */
+/* 상단바에서 주로 사용해서 header, small */
+.small-text-header {
+  font-size: var(--text-Small);
+  font-weight: var(--textW-medium); 
+  color: var(--color-default-dark);
+}
