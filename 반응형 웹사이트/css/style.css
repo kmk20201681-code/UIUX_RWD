@@ -56,10 +56,11 @@ header .con {
     transform: translate(-50%, -50%);
 }
 .menu1 a {
-    padding-top: var(num8);
-    padding-bottom: var(num8);
+    padding-top: var(--num8);
+    padding-bottom: var(--num8);
     /* 16 기본 사이즈라 등록 안함 */
     /* font-size: var(--text-SMALL); */
+    font-weight: var(--textW-LARGE);
 }
 
 .user-menu-box {
