@@ -1,3 +1,11 @@
+/* 0 ~ 1380 */
+@media screen and (max-width:1380px) {
+    .SMALL-li-header {
+        font-size: var(--text-sm);
+    }
+}
+
+
 
 
 /* 1241 ~ n값 : 헷갈리니까 media위에 작성
@@ -54,6 +62,27 @@
         max-width: var(--GW-S);
         padding-left: var(--padding-grid-MEDIUM);
         padding-right: var(--padding-grid-MEDIUM);
-        background-color: antiquewhite;
+        /* background-color: antiquewhite; */
+    }
+}
+.menu1-768 {
+    display: none; /*  평소에 안보이게 설정  */
+}
+
+
+/* 0 ~ 768 */
+@media screen and (max-width: 768px ) {
+    header .con {
+        justify-content: center; /* header .con에 justify-content: space-between;이 설정되어 있어서 변경해줌 */
+        flex-direction: column;
+        border: 1px solid red;
+    }
+    .menu1-768 {
+        display: flex;
+        border: 1px solid red;
+    }
+    .user-box-1240 {
+        display: none;
+        border: 1px solid red;
     }
 }
