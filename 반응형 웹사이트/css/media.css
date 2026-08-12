@@ -77,6 +77,10 @@
         flex-direction: column;
         border: 1px solid red;
     }
+    .menu1-768 ul {
+        width: 100%;
+        justify-content: space-between;
+    }
     .menu1-768 {
         display: flex;
         border: 1px solid red;
