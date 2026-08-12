@@ -8,6 +8,8 @@
     --color-background-dart-info: #253e5f;
     --color-background-dart-warning: #5A4815; 
     --color-ring-dart-primary : #5B5B5A;
+    /* 햄버거버튼 호버 시 */
+    --color-background-menu-hover: #9ba39b;
 
 
     /* 보조색 (연한컬러) */
@@ -23,6 +25,9 @@
     --font-text-size22:22px;
     --font-text-size24:24px;
     --font-text-size26:26px;
+    /* 아이콘 사이즈 추가 */
+    --font-text-size28:28px;
+    --font-text-size32:32px;
 
     --font-text-size40:40px;
 

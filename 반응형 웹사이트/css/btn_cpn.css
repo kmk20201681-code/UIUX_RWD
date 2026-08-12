@@ -21,10 +21,47 @@
   font-weight: var(--textW-MEDIUM);
   border: 1px solid var(--main);
 }
-/* 모바일전용아이콘 메뉴버튼 */
+/* 기존 모바일 메뉴 아이콘 스타일
 .mo-menu-btn {
     font-size: var(--icon-FS-MEDIUM);
     font-weight: var(--icon-W-MEDIUM);
+}
+*/
+
+/* 모바일 원형 메뉴 버튼 컴포넌트 */
+.mo-menu-btn {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-default-dark);
+  background-color: var(--color-default-light);
+  border: 1px solid var(--main);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mo-menu-btn__icon {
+  font-size: var(--icon-FS-MEDIUM);
+  font-weight: var(--icon-W-SMALL);
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 28;
+  line-height: 1;
+}
+
+/* 햄버거버튼 호버 시 */
+.mo-menu-btn:hover {
+  background-color: var(--color-background-menu-hover);
+}
+
+.mo-menu-btn:focus-visible {
+  outline: 3px solid var(--main);
+  outline-offset: 3px;
+}
+
+.mo-menu-btn:active {
+  transform: scale(0.95);
 }
 
 /* ---- 지역 버튼 ---- */

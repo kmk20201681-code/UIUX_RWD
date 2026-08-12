@@ -130,30 +130,44 @@ button { color: inherit; }
 .desktop-nav,
 .header-actions { display: none; }
 
-.mobile-menu { position: relative; }
+.menu-toggle { position: relative; }
 
-.mobile-menu summary {
+.menu-toggle__button {
   display: grid;
   width: 2.75rem;
   height: 2.75rem;
-  place-content: center;
-  gap: .3rem;
+  padding: 0;
+  place-items: center;
   list-style: none;
   cursor: pointer;
+  background: #fff;
   border: 1px solid var(--line);
   border-radius: 50%;
+  transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
 }
 
-.mobile-menu summary::-webkit-details-marker { display: none; }
+.menu-toggle__button::-webkit-details-marker { display: none; }
+.menu-toggle__button::marker { content: ""; }
+.menu-toggle__button:hover { background: var(--soft-blue); border-color: var(--blue); }
+.menu-toggle__button:active { transform: scale(.94); }
+.menu-toggle__button:focus-visible { outline: .1875rem solid #ffb800; outline-offset: .1875rem; }
 
-.mobile-menu summary span {
+.menu-toggle__icon { display: grid; gap: .27rem; }
+
+.menu-toggle__icon > span {
   display: block;
   width: 1.15rem;
   height: .125rem;
   background: #222;
+  border-radius: 999px;
+  transition: opacity .2s ease, transform .2s ease;
 }
 
-.mobile-menu nav {
+.menu-toggle[open] .menu-toggle__icon > span:nth-child(1) { transform: translateY(.395rem) rotate(45deg); }
+.menu-toggle[open] .menu-toggle__icon > span:nth-child(2) { opacity: 0; }
+.menu-toggle[open] .menu-toggle__icon > span:nth-child(3) { transform: translateY(-.395rem) rotate(-45deg); }
+
+.menu-toggle__panel {
   position: absolute;
   top: calc(100% + .6rem);
   right: 0;
@@ -166,15 +180,15 @@ button { color: inherit; }
   box-shadow: 0 1rem 2.5rem rgba(20, 25, 55, .13);
 }
 
-.mobile-menu nav > a {
+.menu-toggle__panel > a {
   padding: .8rem .75rem;
   font-weight: 750;
   border-radius: .55rem;
 }
 
-.mobile-menu nav > a:hover { background: var(--soft-blue); }
+.menu-toggle__panel > a:hover { background: var(--soft-blue); }
 
-.mobile-menu__actions {
+.menu-toggle__actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: .5rem;
@@ -205,7 +219,7 @@ button { color: inherit; }
 
 @media (min-width: 64rem) {
   .site-header__inner { min-height: 5.625rem; }
-  .mobile-menu { display: none; }
+  .menu-toggle { display: none; }
   .desktop-nav {
     display: flex;
     min-height: 5.625rem;
