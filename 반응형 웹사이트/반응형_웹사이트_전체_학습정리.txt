@@ -1,0 +1,1005 @@
+============================================================
+반응형 웹사이트 폴더 전체 학습 정리
+============================================================
+
+작성 대상 폴더: 반응형 웹사이트
+프로젝트 성격: 상단 공지 바와 헤더 내비게이션을 화면 너비에 따라 바꾸는 반응형 웹 실습
+
+
+1. 프로젝트를 한 문장으로 이해하기
+------------------------------------------------------------
+
+이 프로젝트는 다음 화면을 만드는 연습이다.
+
+  상단 공지 바
+       ↓
+  로고 + 메뉴 + 검색/사용자 아이콘 + 회원가입/로그인
+       ↓
+  화면이 좁아지면 데스크톱 메뉴를 숨기고 햄버거 메뉴 표시
+       ↓
+  768px 이하에서는 메뉴를 로고 아래쪽 가로 메뉴로 다시 표시
+
+CSS를 한 파일에 모두 넣지 않고 아래와 같이 역할별로 나눈 것이 핵심이다.
+
+  normal.css       브라우저 기본 스타일 초기화, 폰트 설정
+  root.css         가장 기초적인 색상·크기·간격 숫자(기초 토큰)
+  component.css    기초 토큰을 실제 용도에 맞게 다시 이름 붙임
+  btn_cpn.css      버튼과 아이콘 컴포넌트
+  item_cpn.css     글자 크기와 색상 유틸리티
+  layout_cpn.css   컨테이너, 로고, 공통 레이아웃 컴포넌트
+  style.css        현재 페이지의 실제 배치와 모양
+  media.css        화면 너비별 반응형 변경 사항
+
+
+2. 폴더와 파일 구조
+------------------------------------------------------------
+
+반응형 웹사이트/
+├─ index.html
+├─ component.html
+├─ image.png
+├─ 반응형 웹사이트.zip
+└─ css/
+   ├─ normal.css
+   ├─ root.css
+   ├─ component.css
+   ├─ btn_cpn.css
+   ├─ item_cpn.css
+   ├─ layout_cpn.css
+   ├─ style.css
+   └─ media.css
+
+파일별 목적
+
+1) index.html
+   실제 헤더 화면을 조립한 메인 문서이다.
+   notice-bar, header, logo, menu1, user-menu-box 등이 들어 있다.
+
+2) component.html
+   각 부품을 따로 출력해 보는 컴포넌트 확인용 문서이다.
+   검색 아이콘, 원형 아이콘, 햄버거 버튼, 회원가입/로그인 버튼,
+   NEW 배지, 밑줄 메뉴 등을 개별적으로 확인하려는 목적이다.
+
+3) image.png
+   프로젝트에서 참고하거나 확인하기 위한 이미지 파일이다.
+   현재 index.html에서는 이 이미지를 직접 불러오지 않는다.
+
+4) 반응형 웹사이트.zip
+   프로젝트 압축본이다. 브라우저가 실행에 사용하는 파일은 아니다.
+
+5) css 폴더
+   초기화 → 기초 변수 → 의미 변수 → 컴포넌트 → 페이지 → 반응형 순서로
+   스타일 책임을 나누어 두었다.
+
+
+3. index.html 구조
+------------------------------------------------------------
+
+전체 구조를 간단히 줄이면 다음과 같다.
+
+<body>
+  <aside class="notice-bar XS-text-cpn col-de-light">
+    상단 안내 내용
+  </aside>
+
+  <header>
+    <div class="con">
+      <h1 class="logo-box">
+        <a class="logo">brivyy</a>
+      </h1>
+
+      <div class="user-box">
+        데스크톱 메뉴 + 사용자 기능
+      </div>
+
+      <div class="user-box-1240">
+        햄버거 메뉴 버튼
+      </div>
+
+      <nav class="menu1 menu1-768">
+        768px 이하에서 보일 메뉴
+      </nav>
+    </div>
+  </header>
+</body>
+
+각 영역의 의미
+
+가. .notice-bar
+   페이지 최상단 안내 영역이다.
+   XS-text-cpn으로 작은 글자를 적용하고 col-de-light로 흰 글자를 적용한다.
+
+   여러 클래스를 조합한 예:
+
+   class="notice-bar XS-text-cpn col-de-light"
+
+   notice-bar      → 배경, 높이, 정렬
+   XS-text-cpn     → 글자 크기와 굵기
+   col-de-light    → 글자색
+
+   즉, 한 클래스가 모든 일을 맡지 않고 작은 역할을 합성한다.
+
+나. header .con
+   헤더 내용 전체를 감싸는 컨테이너이다.
+   .con은 좌우 바깥 여백 및 내부 패딩을 담당하고,
+   style.css의 header .con은 flex 배치를 담당한다.
+
+다. .logo-box와 .logo
+   h1은 사이트 대표 제목이라는 의미를 갖고,
+   내부 a 태그는 클릭 가능한 로고 역할을 한다.
+
+라. .user-box
+   넓은 화면에서 표시하는 영역이다.
+   메뉴와 검색·사용자 아이콘, 회원가입·로그인 버튼이 들어 있다.
+
+마. .user-box-1240
+   기본적으로 숨겨져 있다가 1240px 이하에서 나타나는 햄버거 메뉴 영역이다.
+
+바. .menu1-768
+   기본적으로 숨겨져 있다가 768px 이하에서 표시되는 별도의 메뉴이다.
+   동일한 메뉴 HTML을 두 번 작성했다는 점도 확인할 수 있다.
+
+
+4. CSS가 적용되는 순서와 캐스케이딩
+------------------------------------------------------------
+
+HTML에서 CSS는 위에서 아래 순서로 읽힌다.
+뒤쪽 파일의 규칙은 선택자 우선순위가 같다면 앞쪽 규칙을 덮어쓸 수 있다.
+
+이 프로젝트에서 의도한 권장 순서는 다음과 같다.
+
+1) normal.css
+2) root.css
+3) component.css
+4) btn_cpn.css
+5) item_cpn.css
+6) layout_cpn.css
+7) style.css
+8) media.css
+
+왜 이 순서인가?
+
+  초기화
+    ↓
+  원재료 변수
+    ↓
+  의미가 붙은 변수
+    ↓
+  재사용 부품
+    ↓
+  현재 페이지 스타일
+    ↓
+  특정 화면 너비에서 최종 덮어쓰기
+
+예를 들어 style.css에서 .user-box-1240을 display:flex로 만들더라도,
+media.css의 일반 규칙에서 display:none으로 숨긴다.
+그리고 1240px 이하 미디어 쿼리가 다시 display:flex로 변경한다.
+
+
+5. normal.css 상세 설명
+------------------------------------------------------------
+
+역할: 브라우저마다 다른 기본 모양을 정리하고 Pretendard 폰트를 설정한다.
+
+가. @font-face
+
+Pretendard의 100부터 900까지 굵기를 각각 등록한다.
+
+예:
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('...Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+font-display: swap은 웹폰트를 불러오는 동안 시스템 폰트를 먼저 보여 주고,
+다운로드가 끝나면 Pretendard로 교체하게 한다.
+
+나. 폰트 적용 대상
+
+html, body, button, input, select, textarea에 같은 font-family를 적용한다.
+버튼이나 입력 요소는 브라우저 기본 폰트를 따로 쓰는 경우가 있어 함께 지정한 것이다.
+
+다. 초기화(reset) 규칙
+
+* { box-sizing: border-box; }
+  → width와 height 안에 padding과 border가 포함되게 한다.
+
+body { margin:0; padding:0; }
+  → 브라우저의 기본 바깥 여백을 제거한다.
+
+ul, li { list-style:none; margin:0; padding:0; }
+  → 목록의 점과 기본 간격을 제거한다.
+
+h1~h6 { font-size:inherit; margin:0; }
+  → 제목 태그의 브라우저 기본 크기와 여백을 제거한다.
+
+a { color:inherit; text-decoration:none; display:block; }
+  → 링크 밑줄을 없애고 부모 글자색을 상속한다.
+
+button { background:transparent; border:none; }
+  → 버튼의 브라우저 기본 배경과 테두리를 없앤다.
+
+img { display:block; }
+  → 이미지 아래에 생길 수 있는 인라인 기준선 여백을 제거한다.
+
+라. 페이지 기본 배경
+
+body {
+  color: var(--ink);
+  background-color: var(--color-background-tertiary);
+}
+
+이 값들은 뒤에서 불러온 변수 파일에서 정의되어도 사용할 수 있다.
+CSS 변수는 최종 계산 시점에 값을 찾기 때문이다.
+
+
+6. root.css 상세 설명: 기초 디자인 토큰
+------------------------------------------------------------
+
+역할: 디자인에서 사용하는 가장 작은 원재료 값을 :root에 모아 둔다.
+:root 변수는 문서 전체에서 var(--변수명)으로 사용할 수 있다.
+
+가. 색상
+
+--color-background-tertiary: #faf9f5;
+--color-text-dart-info2: #556156;
+--color-background-menu-hover: #9ba39b;
+--color-Wh: #fff;
+--color-def: #333;
+
+나. 고정형 글자 크기
+
+--font-text-size14: 14px;
+--font-text-size16: 16px;
+...
+--font-text-size40: 40px;
+
+px은 루트 글자 크기와 관계없이 고정된 크기이다.
+
+다. 적응형 글자 크기
+
+--text-sm: 0.875rem;  /* 보통 14px */
+--text-base: 1rem;    /* 보통 16px */
+--text-lg: 1.125rem;  /* 보통 18px */
+
+rem은 html의 기본 글자 크기를 기준으로 계산되므로 사용자 글자 크기 설정에
+좀 더 유연하다. 기본 16px일 때 1rem은 16px이다.
+
+라. 폰트 굵기
+
+--font-weight300부터 --font-weight900까지 등록되어 있다.
+
+마. 간격 숫자
+
+--num0부터 --num180까지 2px 간격으로 등록되어 있다.
+예: --num8:8px, --num40:40px, --num140:140px
+
+사용 예:
+
+.menu1 ul { gap: var(--num40); }
+
+바. 그리드 너비
+
+--GW-XXS: 320px;
+--GW-XS: 768px;
+--GW-S: 900px;
+--GW-M: 1100px;
+--GW-L: 1620px;
+
+컨테이너 최대 너비나 최소 너비를 정할 때 사용하는 값이다.
+
+
+7. component.css 상세 설명: 의미가 있는 2차 토큰
+------------------------------------------------------------
+
+역할: root.css의 기초 값을 실제 용도에 맞는 이름으로 한 번 더 연결한다.
+
+예:
+
+--color-text-dart-info2: #556156;  (root.css의 원재료)
+             ↓
+--main: var(--color-text-dart-info2);  (component.css의 의미 변수)
+             ↓
+background-color: var(--main);  (실제 컴포넌트)
+
+이렇게 하면 브랜드 메인 색을 변경할 때 컴포넌트마다 색상 코드를 바꾸지 않고
+--main이 가리키는 값만 변경할 수 있다.
+
+주요 변수
+
+색상:
+  --main                 브랜드 메인 색
+  --ink                  기본 진한 글자색
+  --muted                흐린 글자색
+  --line                 구분선 색
+  --color-default-light  흰색 계열
+  --color-default-dark   기본 진한색
+
+글자:
+  --text-XS              14px
+  --text-SMALL           18px
+  --text-MEDIUM          20px
+  --text-large           26px
+  --text-logo            40px
+
+굵기:
+  --textW-XS             300
+  --textW-SMALL          500
+  --textW-MEDIUM         600
+  --textW-large          700
+  --textW-logo           900
+
+패딩:
+  --padding-XSS          2px 6px
+  --padding-XS           10px 16px
+  --padding-grid-MEDIUM  80px
+  --padding-grid-LARGRE  140px
+
+아이콘:
+  --icon-FS-XS ~ --icon-FS-LARGRE
+  --icon-W-XS  ~ --icon-W-LARGRE
+
+그리드:
+  --G-center: 0 auto
+  --grid-1080: 900px
+  --gridM-1080: 320px
+
+학습 포인트:
+root.css가 “14px, #556156, 80px” 같은 원시 값 저장소라면,
+component.css는 “작은 본문, 메인 색, 중간 그리드 패딩”처럼 용도를 표현한다.
+
+
+8. btn_cpn.css 상세 설명
+------------------------------------------------------------
+
+역할: 버튼, 메뉴 버튼, 아이콘, NEW 배지를 재사용 가능한 부품으로 만든다.
+
+가. 채워진 작은 버튼
+
+.btn-XS-color {
+  padding: var(--padding-XS);
+  background-color: var(--main);
+  border-radius: var(--num10);
+  color: var(--color-default-light);
+  font-size: var(--text-XS);
+  font-weight: var(--textW-MEDIUM);
+}
+
+사용 예:
+
+<button class="btn-XS-color">회원가입</button>
+
+나. 테두리 작은 버튼
+
+.btn-XS-Ncolor는 배경을 채우지 않고 메인 색 테두리와 글자를 사용한다.
+
+사용 예:
+
+<button class="btn-XS-Ncolor">로그인</button>
+
+다. 원형 모바일 메뉴 버튼
+
+.mo-menu-btn은 48×48px 원형 flex 컨테이너이고,
+내부 .mo-menu-btn__icon을 가운데 배치한다.
+
+상태별 효과:
+
+  :hover         마우스를 올리면 배경색 변경
+  :focus-visible 키보드 포커스일 때 3px 외곽선 표시
+  :active        누르는 동안 0.95배로 축소
+
+접근성 예:
+
+<button class="mo-menu-btn" type="button" aria-label="전체 메뉴 열기">
+  <span class="material-symbols-rounded mo-menu-btn__icon"
+        aria-hidden="true">menu</span>
+</button>
+
+아이콘 자체는 스크린 리더가 읽지 않도록 aria-hidden을 주고,
+버튼의 실제 목적은 aria-label로 제공한다.
+
+라. Google Material Symbols 아이콘 크기
+
+.icon-FS-XS       작은 아이콘
+.icon-FS-SMALL    그보다 큰 아이콘
+.circle-icon-XS   특정 원형 아이콘
+.menu-icon        큰 메뉴 아이콘
+
+마. NEW 배지
+
+.icon-new는 보라색 그라디언트 배지이다.
+position:absolute이므로 기준 부모에 position:relative가 필요하다.
+현재 .menu1 li가 그 기준 부모 역할을 한다.
+
+
+9. item_cpn.css 상세 설명
+------------------------------------------------------------
+
+역할: 작은 단위의 글자 및 색상 유틸리티 클래스를 제공한다.
+
+전역 색상 클래스:
+
+.col-de-light { color: 흰색; }
+.col-de-dark  { color: 진한색; }
+
+글자 클래스:
+
+.XS-text-cpn {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.SMALL-text-header {
+  font-size: 18px;
+  font-weight: 600;
+  color: 진한색;
+}
+
+.SMALL-li-header {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+조합 사용 예:
+
+<aside class="notice-bar XS-text-cpn col-de-light">...</aside>
+
+같은 XS-text-cpn이라도 색은 별도 클래스로 선택할 수 있다.
+
+
+10. layout_cpn.css 상세 설명
+------------------------------------------------------------
+
+역할: 전체 폭, 로고와 같이 여러 곳에서 다시 쓸 수 있는 레이아웃을 정의한다.
+
+가. .con 컨테이너
+
+.con {
+  margin: 0 auto;
+  padding-left: 140px;
+  padding-right: 140px;
+}
+
+margin:0 auto는 너비가 제한된 요소를 수평 중앙에 놓을 때 주로 사용한다.
+현재 기본 상태에서는 .con에 width/max-width가 없으므로 auto 여백 효과보다
+좌우 140px 패딩의 역할이 더 직접적으로 보인다.
+
+나. 공통 버튼 포인터
+
+button { cursor:pointer; }
+
+버튼 위에서 마우스 커서를 손가락 모양으로 바꾼다.
+
+다. 로고
+
+.logo는 40px, 굵기 900, 메인 색을 사용한다.
+
+라. .li와 ::after
+
+.li::after는 요소 하단에 가상 요소로 2px 밑줄을 만든다.
+HTML에 실제 빈 태그를 추가하지 않고 장식 요소를 만드는 예이다.
+
+
+11. style.css 상세 설명: 실제 페이지 조립
+------------------------------------------------------------
+
+역할: 앞에서 만든 변수와 컴포넌트를 이용해 헤더 화면을 배치한다.
+
+가. 공지 바
+
+.notice-bar {
+  background-color: var(--main);
+  height: 4vh;
+  min-height: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+vh는 브라우저 화면 높이의 1% 단위이다.
+4vh는 화면 높이의 4%가 된다.
+flex로 자식들을 가로 방향 중앙에 배치한다.
+
+나. 헤더 컨테이너
+
+header .con {
+  height: 12vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+로고와 사용자 영역을 양끝으로 벌려 놓는다.
+.logo-box는 align-self:center로 자신만 교차축 가운데에 놓인다.
+
+다. 데스크톱/햄버거 영역 공통 배치
+
+.user-box, .user-box-1240 {
+  display: flex;
+}
+
+두 클래스에 같은 선언을 한 번에 적용하는 그룹 선택자이다.
+
+라. 메뉴 목록
+
+.menu1 ul {
+  display: flex;
+  height: 100%;
+  gap: 40px;
+}
+
+li에도 display:flex와 align-items:center를 주어 각 메뉴 글자를 세로 중앙에 둔다.
+
+마. 두 번째 메뉴의 NEW 위치
+
+.menu1 li:nth-child(2)는 두 번째 li만 선택한다.
+.menu1 li > .icon-new는 li의 직계 자식 NEW 배지를 선택한다.
+left, top, transform으로 배지 위치를 세밀하게 조정한다.
+
+바. 사용자 메뉴
+
+.user-menu-box와 .user-ex는 flex를 사용한다.
+.user-ex의 gap:8px은 회원가입 버튼과 로그인 버튼 사이 간격이다.
+
+주의: 현재 빨간 border는 레이아웃 영역을 눈으로 확인하기 위한 디버그 선이다.
+완성 디자인에서는 제거하는 것이 자연스럽다.
+
+
+12. media.css 상세 설명: 반응형 핵심
+------------------------------------------------------------
+
+미디어 쿼리는 조건이 참일 때만 내부 CSS를 적용한다.
+
+기본 화면(1380px 초과)
+
+  - 메뉴 글자: 16px
+  - .user-box: 표시
+  - .user-box-1240: 숨김
+  - .menu1-768: 숨김
+
+1380px 이하
+
+@media screen and (max-width:1380px) {
+  .SMALL-li-header { font-size: var(--text-sm); }
+}
+
+  - 메뉴 글자를 16px에서 14px로 줄인다.
+  - 메뉴가 차지하는 가로 공간을 줄이려는 목적이다.
+
+1240px 이하
+
+@media screen and (max-width:1240px) {
+  .user-box { display:none; }
+  .user-box-1240 { display:flex; }
+}
+
+  - 전체 데스크톱 메뉴와 사용자 버튼을 숨긴다.
+  - 햄버거 버튼을 표시한다.
+  - display:block이 아니라 display:flex를 사용하여 기존 flex 배치를 유지한다.
+
+1080px 이하
+
+@media screen and (max-width:1080px) {
+  header { min-width:320px; }
+  header .con {
+    max-width:900px;
+    padding-left:80px;
+    padding-right:80px;
+  }
+}
+
+  - 헤더는 320px보다 작아지지 않도록 한다.
+  - 컨테이너 최대 폭을 900px로 제한한다.
+  - 좌우 패딩을 140px에서 80px로 줄인다.
+
+중요: @media의 조건에는 일반 CSS 변수를 쓸 수 없다.
+
+잘못된 예:
+
+@media (max-width: var(--grid-1080)) { ... }
+
+현재 CSS 표준에서 미디어 쿼리 조건의 var()는 지원되지 않으므로
+@media (max-width:1080px)처럼 직접 값을 써야 한다.
+
+768px 이하
+
+@media screen and (max-width:768px) {
+  header .con {
+    justify-content:center;
+    flex-direction:column;
+  }
+  .menu1-768 { display:flex; }
+  .user-box-1240 { display:none; }
+}
+
+  - 헤더의 주축을 가로에서 세로로 바꾼다.
+  - 로고 아래에 모바일용 메뉴를 표시한다.
+  - 1240px 이하에서 보였던 햄버거 버튼은 다시 숨긴다.
+  - 메뉴 ul은 width:100%, justify-content:space-between으로 고르게 벌린다.
+
+화면별 변화 표
+
+화면 너비       데스크톱 user-box   햄버거 영역   하단 menu1-768
+---------------------------------------------------------------
+1380px 초과      표시                숨김          숨김
+1241~1380px      표시                숨김          숨김
+769~1240px       숨김                표시          숨김
+0~768px          숨김                숨김          표시
+
+참고: header의 min-width가 320px이므로 실제 최소 설계 폭은 320px이다.
+
+
+13. 변수 값을 따라가는 방법
+------------------------------------------------------------
+
+CSS 변수가 여러 단계로 연결되어 처음에는 어려울 수 있다.
+다음처럼 오른쪽에서 왼쪽이 아니라 정의를 단계별로 따라간다.
+
+예 1: 회원가입 버튼 배경색
+
+.btn-XS-color
+  background-color: var(--main)
+        ↓ component.css
+  --main: var(--color-text-dart-info2)
+        ↓ root.css
+  --color-text-dart-info2: #556156
+
+최종 결과: #556156
+
+예 2: 회원가입 버튼 패딩
+
+.btn-XS-color
+  padding: var(--padding-XS)
+        ↓ component.css
+  --padding-XS: var(--num10) var(--num16)
+        ↓ root.css
+  --num10:10px, --num16:16px
+
+최종 결과: 위아래 10px, 좌우 16px
+
+예 3: 로고 글자
+
+.logo
+  font-size: var(--text-logo) → 40px
+  font-weight: var(--textW-logo) → 900
+  color: var(--main) → #556156
+
+
+14. Flexbox가 사용된 곳
+------------------------------------------------------------
+
+이 프로젝트의 배치는 거의 모두 flex를 중심으로 이루어진다.
+
+.notice-bar
+  → 안내 문구를 가로·세로 중앙 정렬
+
+header .con
+  → 로고와 사용자 영역을 좌우 배치
+
+.user-box
+  → 메뉴와 사용자 기능을 가로 배치
+
+.menu1 ul
+  → 메뉴 li들을 가로 배치
+
+.menu1 li
+  → 각 메뉴 항목 내부를 세로 중앙 정렬
+
+.user-menu-box, .se-box, .user-ex
+  → 아이콘과 버튼을 가로 배치
+
+.mo-menu-btn
+  → 원 안의 메뉴 아이콘을 정확히 가운데 정렬
+
+모바일에서는 다음 한 줄로 헤더 방향이 바뀐다.
+
+flex-direction: column;
+
+기본 row일 때: 로고 → 메뉴 (가로)
+column일 때:    로고
+               메뉴          (세로)
+
+
+15. 현재 코드에서 반드시 알아둘 문제점과 개선점
+------------------------------------------------------------
+
+가. index.html의 한글 깨짐
+
+현재 title, 주석, 메뉴 이름과 일부 태그가 “諛섏쓳...” 형태로 저장되어 있다.
+단순히 터미널 표시만의 문제가 아니라 UTF-8로 읽어도 깨진 문자열이 확인된다.
+원본 한글을 다시 입력하여 저장해야 한다.
+
+또한 깨진 텍스트 때문에 아래와 비슷하게 닫는 태그가 글자로 합쳐진 부분이 있다.
+
+<li><a href="#">깨진문자/a></li>
+<button>깨진문자/button>
+
+정상 예:
+
+<li><a href="#">캠페인</a></li>
+<button class="btn-XS-color">회원가입</button>
+
+나. index.html의 컴포넌트 CSS 경로
+
+normal.css, root.css, style.css, media.css는 ./css/... 상대 경로지만,
+component.css, btn_cpn.css, item_cpn.css, layout_cpn.css는 깨진 절대 경로로 되어 있다.
+이 경로를 못 찾으면 --main, 버튼, 글자, 컨테이너 스타일 등이 적용되지 않는다.
+
+모두 다음처럼 통일하는 것이 안전하다.
+
+<link rel="stylesheet" href="./css/component.css">
+<link rel="stylesheet" href="./css/btn_cpn.css">
+<link rel="stylesheet" href="./css/item_cpn.css">
+<link rel="stylesheet" href="./css/layout_cpn.css">
+
+다. component.html의 중복 및 누락 링크
+
+component.css와 btn_cpn.css를 상대 경로와 깨진 절대 경로로 중복 호출한다.
+반면 item_cpn.css와 layout_cpn.css는 올바른 상대 경로 호출이 없다.
+권장 CSS 순서에 맞게 각각 한 번씩만 연결해야 한다.
+
+라. 변수명의 대소문자 불일치
+
+정의:
+  --textW-large
+
+사용:
+  --textW-LARGE
+
+CSS 사용자 정의 속성 이름은 대소문자를 구분한다.
+따라서 style.css의 다음 값은 유효한 값을 얻지 못한다.
+
+.menu1 a { font-weight: var(--textW-LARGE); }
+
+var(--textW-large)로 고쳐야 한다.
+
+마. letter-spacing의 % 사용
+
+.logo { letter-spacing:-4%; }
+
+letter-spacing에는 일반적으로 px, em 같은 길이 단위를 사용해야 한다.
+권장 예:
+
+letter-spacing: -0.04em;
+
+바. button의 padding:auto
+
+normal.css의 button { padding:auto; }는 유효한 padding 값이 아니다.
+초기화 목적이면 padding:0이 더 정확하다.
+
+사. body { height:30px; }
+
+style.css의 body 높이를 30px로 고정할 이유가 없다.
+콘텐츠가 늘어날 때 혼동을 줄 수 있으므로 보통 삭제하거나,
+화면 전체 최소 높이가 필요하면 min-height:100vh를 사용한다.
+
+아. notice-bar의 height와 min-height 관계
+
+height:4vh이고 min-height:3vh라서 min-height가 실질적으로 높이를 보강하지 못한다.
+작은 화면에서도 일정 픽셀 높이를 보장하려면 예를 들어 다음처럼 쓸 수 있다.
+
+height:4vh;
+min-height:32px;
+
+자. 빈 변수
+
+root.css의 --GWM-M: ; 는 값이 비어 있다.
+사용하기 전에 실제 값을 넣거나 사용하지 않는다면 제거하는 것이 좋다.
+
+차. 디버그 테두리
+
+.user-box, .user-menu-box 및 768px 미디어 쿼리의 빨간 테두리는
+영역 확인에는 유용하지만 완성본에서는 제거해야 한다.
+
+카. 모바일 메뉴 중복 작성
+
+데스크톱 메뉴와 768px용 메뉴의 HTML 내용이 반복된다.
+정적 실습에서는 이해하기 쉽지만 메뉴 수정 시 두 곳을 함께 바꿔야 한다.
+실제 프로젝트라면 하나의 메뉴를 CSS로 재배치하거나 JavaScript/템플릿으로
+한 데이터에서 렌더링하는 방법을 고려할 수 있다.
+
+타. 햄버거 버튼은 열기 동작이 아직 없음
+
+버튼 모양과 반응형 표시는 있지만 JavaScript 파일이 없으므로
+클릭해도 메뉴가 열리지는 않는다. 현재는 UI 모양 실습 단계이다.
+
+파. 외부 네트워크 의존성
+
+Pretendard 폰트와 Material Symbols를 외부 URL에서 가져온다.
+인터넷이 연결되지 않으면 시스템 폰트가 표시되거나 아이콘이 글자로 보일 수 있다.
+
+
+16. 올바른 CSS 연결 예시
+------------------------------------------------------------
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="Material Symbols 주소">
+  <link rel="stylesheet" href="./css/normal.css">
+  <link rel="stylesheet" href="./css/root.css">
+  <link rel="stylesheet" href="./css/component.css">
+  <link rel="stylesheet" href="./css/btn_cpn.css">
+  <link rel="stylesheet" href="./css/item_cpn.css">
+  <link rel="stylesheet" href="./css/layout_cpn.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/media.css">
+</head>
+
+media.css를 마지막에 두는 이유는 기본 스타일을 화면 너비에 맞게 최종적으로
+덮어쓰게 하기 위해서이다.
+
+
+17. 정상 형태로 줄여 쓴 헤더 예시
+------------------------------------------------------------
+
+<aside class="notice-bar XS-text-cpn col-de-light">
+  <span>안녕하세요, 브리비입니다.</span>
+  <a href="#">자세히 보기</a>
+</aside>
+
+<header>
+  <div class="con">
+    <h1 class="logo-box">
+      <a class="logo" href="#">brivyy</a>
+    </h1>
+
+    <div class="user-box">
+      <nav class="menu1" aria-label="주 메뉴">
+        <ul class="SMALL-li-header">
+          <li><a href="#">캠페인</a></li>
+          <li>
+            <a href="#">리서치</a>
+            <span class="icon-new">NEW</span>
+          </li>
+          <li><a href="#">이벤트</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-menu-box">
+        <div class="se-box">
+          <button type="button" aria-label="검색">
+            <span class="material-symbols-rounded icon-FS-SMALL"
+                  aria-hidden="true">search</span>
+          </button>
+        </div>
+        <div class="user-ex">
+          <button class="btn-XS-color">회원가입</button>
+          <button class="btn-XS-Ncolor">로그인</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="user-box-1240">
+      <button class="mo-menu-btn" type="button" aria-label="전체 메뉴 열기">
+        <span class="material-symbols-rounded mo-menu-btn__icon"
+              aria-hidden="true">menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+18. 이 프로젝트를 공부하는 추천 순서
+------------------------------------------------------------
+
+1단계: index.html만 보고 화면 영역을 종이에 그린다.
+        공지바 / 로고 / 메뉴 / 사용자 버튼 / 모바일 메뉴로 나눈다.
+
+2단계: normal.css에서 브라우저 기본값을 왜 제거하는지 확인한다.
+
+3단계: root.css의 실제 값 하나를 고른다.
+        예: --num16:16px
+
+4단계: component.css에서 그 값에 어떤 의미를 붙였는지 찾는다.
+        예: --padding-XS 안에서 --num16 사용
+
+5단계: btn_cpn.css에서 실제 부품이 그 변수를 어떻게 쓰는지 찾는다.
+        예: .btn-XS-color의 padding
+
+6단계: style.css의 flex 컨테이너와 자식 관계를 표시한다.
+
+7단계: 브라우저 폭을 1400 → 1200 → 1000 → 700px로 줄이면서
+        media.css의 어느 규칙이 켜지는지 확인한다.
+
+8단계: 개발자 도구의 Styles/Computed 탭에서 최종 적용값을 확인한다.
+
+
+19. 직접 해볼 수 있는 연습 문제
+------------------------------------------------------------
+
+연습 1: 메인 색 변경
+  root.css의 --color-text-dart-info2를 다른 색으로 바꾸고
+  공지바, 로고, 버튼, 테두리가 함께 바뀌는지 확인한다.
+
+연습 2: 브레이크포인트 변경
+  media.css의 1240px을 1100px로 바꾸고 햄버거 버튼이 나타나는 시점을 확인한다.
+
+연습 3: 버튼 상태 추가
+
+.btn-XS-color:hover {
+  opacity:0.85;
+}
+
+  위 규칙을 추가해 마우스 반응을 확인한다.
+
+연습 4: 메뉴 밑줄 효과
+
+.menu1 a {
+  position:relative;
+}
+
+.menu1 a::after {
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0;
+  height:2px;
+  background:var(--main);
+  transition:width 0.2s;
+}
+
+.menu1 a:hover::after {
+  width:100%;
+}
+
+연습 5: 모바일에서 메뉴 열기
+  현재 JavaScript가 없다는 것을 확인하고, 버튼 클릭 시 메뉴에 open 클래스를
+  붙였다 떼는 로직을 추가해 본다. 이때 aria-expanded도 함께 변경하면 좋다.
+
+
+20. 핵심 용어 정리
+------------------------------------------------------------
+
+반응형 웹(Responsive Web)
+  화면 너비와 기기 특성에 따라 배치와 크기가 달라지는 웹 화면.
+
+브레이크포인트(Breakpoint)
+  레이아웃이 바뀌는 기준 너비. 이 프로젝트에서는 1380, 1240, 1080, 768px.
+
+미디어 쿼리(Media Query)
+  특정 화면 조건에서만 CSS를 적용하는 문법.
+
+디자인 토큰(Design Token)
+  색상, 글자 크기, 간격 같은 디자인 값을 변수로 관리하는 방식.
+
+컴포넌트(Component)
+  버튼, 로고, 메뉴처럼 여러 곳에서 다시 사용할 수 있는 UI 부품.
+
+캐스케이드(Cascade)
+  여러 CSS 선언이 충돌할 때 출처, 중요도, 선택자 우선순위, 작성 순서에 따라
+  최종 스타일을 결정하는 CSS의 규칙.
+
+Flexbox
+  한 방향으로 요소를 정렬하고 간격을 조절하는 CSS 레이아웃 방식.
+
+가상 요소(::before, ::after)
+  HTML 태그를 추가하지 않고 CSS에서 장식용 요소를 생성하는 기능.
+
+상대 경로
+  현재 HTML 위치를 기준으로 파일을 찾는 경로. 예: ./css/style.css
+
+
+21. 최종 요약
+------------------------------------------------------------
+
+이 프로젝트의 가장 중요한 학습 포인트는 세 가지이다.
+
+첫째, CSS를 역할별로 나누었다.
+normal → root → component → 세부 컴포넌트 → style → media의 흐름이다.
+
+둘째, CSS 변수를 두 단계로 구성했다.
+root.css에는 실제 원재료 값을, component.css에는 용도별 이름을 두었다.
+
+셋째, media.css가 화면 너비에 따라 표시 요소와 flex 방향을 바꾼다.
+넓은 화면은 전체 메뉴, 중간 화면은 햄버거 버튼, 작은 화면은 로고 아래 메뉴이다.
+
+현재 파일은 학습용 중간 결과물의 성격이 강하다.
+한글/태그 깨짐, 잘못된 CSS 경로, 변수명 대소문자, 디버그 테두리 등을 먼저
+정리하면 의도한 반응형 헤더를 더 안정적으로 확인할 수 있다.
+
